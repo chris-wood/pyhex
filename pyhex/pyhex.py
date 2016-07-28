@@ -1,35 +1,35 @@
 def hex_to_bytes(v, l = 0):
     bytes = []
+    count = 0
     while v > 0:
         byte = v % 256
         v = v >> 8
         bytes.append(byte)
+        count += 1
     bytes.reverse()
 
-    if l != 0 and len(bytes) < l:
-        delta = l - len(bytes)
-        for i in range(delta):
-            bytes.append(0)
+    for i in range(l - count):
+        bytes.append(0)
 
     return bytes
 
 def hex_to_hex_string(v, l = 0):
-    string = hex(v)[2:]
-    if l != 0 and len(string) < l:
-        delta = l - len(string)
-        string += "0" * delta
-    return string
+    hex_string = hex(v)[2:]
+    length = len(hex_string)
+    for i in range(l - length):
+        hex_string += "00"
+    return hex_string
 
 def hex_string_to_bytes(v, l = 0):
     bytes = []
+    count = 0
     for i in range(0, len(s), 2):
         val = s[i:i+2]
         bytes.append(int(val, 16))
+        count += 1
 
-    if l != 0 and len(bytes) < l:
-        delta = l - len(bytes)
-        for i in range(delta):
-            bytes.append(0)
+    for i in range(l - count):
+        bytes.append(0)
 
     return bytes
 
@@ -55,12 +55,27 @@ def bytes_to_hex(v):
         val = val | (b << ((length - i - 1) * 8))
     return val
 
-def to_hex(v, l = 0):
-    pass
+def to_hex(v):
+    if type(v) == type([]):
+        return bytes_to_hex(v)
+    elif type(v) == type(""):
+        return hex_string_to_hex(v)
+    else:
+        return v
 
 def to_hex_string(v, l = 0):
-    pass
+    if type(v) == type([]):
+        return bytes_to_hex_string(v, l)
+    elif type(v) == type(""):
+        return v
+    else:
+        return hex_to_hex_string(v, l)
 
 def to_bytes(v, l = 0):
-    pass
+    if type(v) == type([]):
+        return v
+    elif type(v) == type(""):
+        return hex_string_to_bytes(v, l)
+    else:
+        return hex_to_bytes(v, l)
 
