@@ -34,15 +34,33 @@ def hex_string_to_bytes(v, l = 0):
     return bytes
 
 def hex_string_to_hex(v):
-    
+    return int(v, 16)   
+
+def bytes_to_hex_string(b, l = 0):
+    hex_string = ""
+    count = 0
+    for i, b in enumerate(b):
+        hex_string += "%02x" % b
+        count += 1
+
+    for i in range(l - count):
+        hex_string += "00"
+
+    return hex_string
+
+def bytes_to_hex(v):
+    val = 0
+    length = len(v)
+    for i, b in enumerate(v):
+        val = val | (b << ((length - i - 1) * 8))
+    return val
+
+def to_hex(v, l = 0):
     pass
 
-def bytes_to_hex_string(b):
-
+def to_hex_string(v, l = 0):
     pass
 
-def bytes_to_hex(b):
-
+def to_bytes(v, l = 0):
     pass
-
 
