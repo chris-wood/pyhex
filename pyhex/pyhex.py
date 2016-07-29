@@ -60,22 +60,28 @@ def to_hex(v):
         return bytes_to_hex(v)
     elif type(v) == type(""):
         return hex_string_to_hex(v)
-    else:
+    elif type(v) == type(0):
         return v
+    else:
+        raise Exception("Unsupported input type: " + str(type(v)))
 
 def to_hex_string(v, l = 0):
     if type(v) == type([]):
         return bytes_to_hex_string(v, l)
     elif type(v) == type(""):
         return v
-    else:
+    elif type(v) == type(0):
         return hex_to_hex_string(v, l)
+    else:
+        raise Exception("Unsupported input type: " + str(type(v)))
 
 def to_bytes(v, l = 0):
     if type(v) == type([]):
         return v
     elif type(v) == type(""):
         return hex_string_to_bytes(v, l)
-    else:
+    elif type(v) == type(0):
         return hex_to_bytes(v, l)
+    else:
+        raise Exception("Unsupported input type: " + str(type(v)))
 
