@@ -1,4 +1,7 @@
 def hex_to_bytes(v, l = 0):
+    if v == 0:
+        return [0]
+
     bytes = []
     count = 0
     while v > 0:
