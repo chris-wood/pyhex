@@ -1,1 +1,1 @@
-from pyhex.pyhex import *
+from pyhex.hex import *
