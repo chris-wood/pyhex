@@ -26,8 +26,8 @@ def hex_to_hex_string(v, l = 0):
 def hex_string_to_bytes(v, l = 0):
     bytes = []
     count = 0
-    for i in range(0, len(s), 2):
-        val = s[i:i+2]
+    for i in range(0, len(v), 2):
+        val = v[i:i+2]
         bytes.append(int(val, 16))
         count += 1
 
@@ -63,7 +63,7 @@ def to_hex(v):
         return bytes_to_hex(v)
     elif type(v) == type(""):
         return hex_string_to_hex(v)
-    elif type(v) == type(0):
+    elif type(v) == type(0) or type(v) == type(0L):
         return v
     else:
         raise Exception("Unsupported input type: " + str(type(v)))
@@ -73,7 +73,7 @@ def to_hex_string(v, l = 0):
         return bytes_to_hex_string(v, l)
     elif type(v) == type(""):
         return v
-    elif type(v) == type(0):
+    elif type(v) == type(0) or type(v) == type(0L):
         return hex_to_hex_string(v, l)
     else:
         raise Exception("Unsupported input type: " + str(type(v)))
@@ -83,7 +83,7 @@ def to_bytes(v, l = 0):
         return v
     elif type(v) == type(""):
         return hex_string_to_bytes(v, l)
-    elif type(v) == type(0):
+    elif type(v) == type(0) or type(v) == type(0L):
         return hex_to_bytes(v, l)
     else:
         raise Exception("Unsupported input type: " + str(type(v)))
